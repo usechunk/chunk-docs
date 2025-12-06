@@ -4,7 +4,9 @@
 
 ## Authentication
 
-ChunkHub uses GitHub OAuth for authentication.
+ChunkHub uses JWT-based authentication for user login and moderation features. Most catalog endpoints are public and require no authentication.
+
+Protected endpoints require a Bearer token:
 
 ```http
 Authorization: Bearer <token>
@@ -133,16 +135,35 @@ GET /api/modpacks/:id
 
 ### Authentication
 
-#### GitHub OAuth Login
+#### Login
 ```http
-GET /api/auth/github
+POST /api/auth/token
 ```
 
-Redirects to GitHub OAuth flow.
+**Request Body:**
+```json
+{
+  "username": "string",
+  "password": "string"
+}
+```
+
+**Response:**
+```json
+{
+  "access_token": "string",
+  "token_type": "bearer"
+}
+```
 
 #### Get Current User
 ```http
-GET /api/auth/user
+GET /api/auth/me
+```
+
+**Headers:**
+```
+Authorization: Bearer <token>
 ```
 
 **Response:**
@@ -150,8 +171,7 @@ GET /api/auth/user
 {
   "id": "string",
   "username": "string",
-  "email": "string",
-  "avatar_url": "string"
+  "email": "string"
 }
 ```
 
