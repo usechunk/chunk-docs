@@ -45,9 +45,9 @@ Those are client-facing tools:
 
 ### chunk-app
 
-- The GUI wrapper for chunk-cli
-- A user-friendly way to browse/search/install
-- A pack management app
+- Web interface for browsing ChunkHub catalog
+- Search and discover mods/modpacks
+- Metadata management interface
 
 They talk to ChunkHub — but they are not libraries either.
 
